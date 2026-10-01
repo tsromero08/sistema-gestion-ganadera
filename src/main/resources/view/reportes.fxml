@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.ReportesController"
+      spacing="0" styleClass="page-container">
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Reportes y Análisis" styleClass="page-title"/>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="Finca:" styleClass="page-subtitle"/>
+                            <Label fx:id="lblFinca" styleClass="page-subtitle-accent"/>
+                            <Label text=" · Soporte: 301 389 6861" styleClass="page-subtitle"/>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Exportar Reporte" onAction="#exportarReporte" styleClass="btn-primary-action"/>
+        </children>
+    </HBox>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+            <!-- ============= REPORTES GANADEROS ============= -->
+            <Tab text="Ganaderos">
+                <content>
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="dashboard-scroll">
+                        <content>
+                            <VBox spacing="18" styleClass="dashboard-content">
+                                <padding><Insets top="20" right="22" bottom="28" left="22"/></padding>
+
+                                <!-- KPI Row Ganadero -->
+                                <HBox spacing="14">
+                                    <children>
+                                        <VBox styleClass="kpi-card kpi-blue" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="ANIMALES" styleClass="kpi-label"/>
+                                                <Label fx:id="lblTotalAnimales" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-green" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="GDP PROM." styleClass="kpi-label"/>
+                                                <Label fx:id="lblAvgGdp" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-teal" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="RENTABLES" styleClass="kpi-label"/>
+                                                <Label fx:id="lblRentables" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-orange" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="CRÍTICOS" styleClass="kpi-label"/>
+                                                <Label fx:id="lblCriticos" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-blue" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="PESO PROMEDIO" styleClass="kpi-label"/>
+                                                <Label fx:id="lblPesoPromedio" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-orange" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="MORTALIDAD" styleClass="kpi-label"/>
+                                                <Label fx:id="lblMortalidad" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-green" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="VACUNAS" styleClass="kpi-label"/>
+                                                <Label fx:id="lblTotalVacunas" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="16">
+                                    <children>
+                                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Animales por Lote" styleClass="section-title"/>
+                                                <TableView fx:id="tablaLotes" prefHeight="220" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colLoteNombre" text="Lote" prefWidth="200"/>
+                                                        <TableColumn fx:id="colLoteAnimales" text="Cantidad" prefWidth="140"/>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Animales con GDP Bajo (&lt; 0.70 kg/día)" styleClass="section-title"/>
+                                                <TableView fx:id="tablaNoRentables" prefHeight="220" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colNRarete" text="Arete" prefWidth="100"/>
+                                                        <TableColumn fx:id="colNRgdp" text="GDP" prefWidth="110"/>
+                                                        <TableColumn fx:id="colNRpeso" text="Peso" prefWidth="90"/>
+                                                        <TableColumn fx:id="colNRlote" text="Lote" prefWidth="110"/>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="16">
+                                    <children>
+                                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Próximas Dosis (próximos 7 días)" styleClass="section-title"/>
+                                                <TableView fx:id="tablaVacunasPendientes" prefHeight="200" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colVParete" text="Arete" prefWidth="110"/>
+                                                        <TableColumn fx:id="colVPvacuna" text="Vacuna" prefWidth="180"/>
+                                                        <TableColumn fx:id="colVPfecha" text="Fecha Dosis" prefWidth="120"/>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Inventario Bajo Mínimo" styleClass="section-title"/>
+                                                <TableView fx:id="tablaInventarioBajo" prefHeight="200" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colInvNombre" text="Ítem" prefWidth="150"/>
+                                                        <TableColumn fx:id="colInvCantidad" text="Stock actual" prefWidth="120"/>
+                                                        <TableColumn fx:id="colInvMinimo" text="Mínimo" prefWidth="130"/>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <VBox spacing="10">
+                                    <children>
+                                        <Label text="Uso de potreros (carga animal)" styleClass="section-title"/>
+                                        <TableView fx:id="tablaUsoPotreros" prefHeight="180" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colUpCodigo" text="Código" prefWidth="100"/>
+                                                <TableColumn fx:id="colUpNombre" text="Potrero" prefWidth="180"/>
+                                                <TableColumn fx:id="colUpArea" text="Área (ha)" prefWidth="100"/>
+                                                <TableColumn fx:id="colUpCapacidad" text="Capacidad" prefWidth="100"/>
+                                                <TableColumn fx:id="colUpActuales" text="Animales actuales" prefWidth="140"/>
+                                                <TableColumn fx:id="colUpCarga" text="Carga" prefWidth="110"/>
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </content>
+            </Tab>
+
+            <!-- ============= REPORTES MARKETPLACE ============= -->
+            <Tab text="Marketplace">
+                <content>
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="dashboard-scroll">
+                        <content>
+                            <VBox spacing="18" styleClass="dashboard-content">
+                                <padding><Insets top="20" right="22" bottom="28" left="22"/></padding>
+
+                                <HBox spacing="14">
+                                    <children>
+                                        <VBox styleClass="kpi-card kpi-blue" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="PUBLICACIONES" styleClass="kpi-label"/>
+                                                <Label fx:id="lblMPublicaciones" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-orange" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="OFERTAS" styleClass="kpi-label"/>
+                                                <Label fx:id="lblMOfertas" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-green" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="VENDIDOS" styleClass="kpi-label"/>
+                                                <Label fx:id="lblMVendidos" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card kpi-teal" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="VALOR VENDIDO" styleClass="kpi-label"/>
+                                                <Label fx:id="lblMValorVendido" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="kpi-card" style="-fx-border-color: #1f9e80; -fx-border-width: 0 0 3 0; -fx-background-color: white;" spacing="4" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <padding><Insets top="14" right="10" bottom="14" left="10"/></padding>
+                                            <children>
+                                                <Label text="COMISIÓN" styleClass="kpi-label"/>
+                                                <Label fx:id="lblMComision" styleClass="kpi-value"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <HBox spacing="16">
+                                    <children>
+                                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Mejores vendedores" styleClass="section-title"/>
+                                                <TableView fx:id="tablaMejoresVendedores" prefHeight="220" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colMvVendedor" text="Vendedor" prefWidth="220"/>
+                                                        <TableColumn fx:id="colMvCantidad" text="Publicaciones" prefWidth="120"/>
+                                                        <TableColumn fx:id="colMvValor" text="Valor total" prefWidth="140"/>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Razas más vendidas" styleClass="section-title"/>
+                                                <TableView fx:id="tablaRazas" prefHeight="220" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colRazaNombre" text="Raza" prefWidth="160"/>
+                                                        <TableColumn fx:id="colRazaCantidad" text="Vendidos" prefWidth="100"/>
+                                                        <TableColumn fx:id="colRazaValor" text="Valor total" prefWidth="140"/>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <VBox spacing="10">
+                                    <children>
+                                        <Label text="Zonas con más actividad (por departamento)" styleClass="section-title"/>
+                                        <TableView fx:id="tablaZonas" prefHeight="200" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colZonaDepto" text="Departamento" prefWidth="180"/>
+                                                <TableColumn fx:id="colZonaPublicaciones" text="Publicaciones" prefWidth="120"/>
+                                                <TableColumn fx:id="colZonaVendidos" text="Vendidos" prefWidth="120"/>
+                                                <TableColumn fx:id="colZonaValor" text="Valor vendido" prefWidth="140"/>
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>

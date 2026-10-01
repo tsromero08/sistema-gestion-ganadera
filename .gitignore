@@ -1,0 +1,15 @@
+# Compilados Maven
+target/
+
+# Credenciales de base de datos (NUNCA subir)
+config/database.properties
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db

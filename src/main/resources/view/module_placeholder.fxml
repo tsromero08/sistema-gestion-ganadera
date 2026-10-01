@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.ModulePlaceholderController"
+      alignment="CENTER" spacing="14.0" styleClass="page">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+    <children>
+        <VBox styleClass="card placeholder-card" alignment="CENTER" spacing="12.0">
+            <children>
+                <Label fx:id="lblTitulo" text="Módulo" styleClass="page-header" />
+                <Label fx:id="lblDescripcion" text="Descripción" wrapText="true" styleClass="muted big-muted" />
+                <Label text="La interfaz principal ya quedó preparada para conectar este módulo sobre el mismo diseño original." wrapText="true" styleClass="muted big-muted" />
+            </children>
+        </VBox>
+    </children>
+</VBox>

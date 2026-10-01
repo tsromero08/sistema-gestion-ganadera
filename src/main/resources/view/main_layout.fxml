@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="820.0" prefWidth="1366.0" styleClass="root-pane"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sistemaganadero.controller.MainLayoutController">
+
+    <left>
+        <ScrollPane fx:id="sidebarScroll" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    style="-fx-background-color: #0f1f3d; -fx-background: #0f1f3d;">
+            <content>
+                <VBox fx:id="sidebar" prefWidth="220.0" styleClass="sidebar" spacing="2.0">
+                    <padding><Insets top="0" right="0" bottom="0" left="0"/></padding>
+                    <children>
+                        <VBox fx:id="sidebarLogo" styleClass="sidebar-logo" alignment="CENTER_LEFT">
+                            <padding><Insets top="20" right="16" bottom="20" left="16"/></padding>
+                            <children>
+                                <Label fx:id="lblLogoLine1" text="SISTEMA" styleClass="logo-line1"/>
+                                <Label fx:id="lblLogoLine2" text="GANADERO" styleClass="logo-line2"/>
+                                <Label fx:id="lblLogoSub"   text="Gestión Integral" styleClass="logo-sub"/>
+                            </children>
+                        </VBox>
+
+                        <Separator styleClass="sidebar-sep"/>
+
+                        <VBox spacing="2.0">
+                            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                            <children>
+                                <Label fx:id="lblSecPrincipal" text="PRINCIPAL" styleClass="nav-section-label"/>
+                                <Button fx:id="btnInicio" text="🏠  Inicio" onAction="#abrirInicio"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button nav-selected"/>
+                                <Button fx:id="btnAnimales" text="🐄  Animales" onAction="#abrirAnimales"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnPesajes" text="⚖  Pesajes" onAction="#abrirPesajes"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnVacunas" text="💉  Vacunas" onAction="#abrirVacunas"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnSanidadModulo" text="🩺  Sanidad" onAction="#abrirSanidad"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnInventario" text="📦  Inventario" onAction="#abrirInventario"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+
+                                <Label fx:id="lblSecOperaciones" text="OPERACIONES" styleClass="nav-section-label" style="-fx-padding: 10 0 0 0;"/>
+                                <Button fx:id="btnPotreros" text="🌾  Potreros" onAction="#abrirPotreros"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnCultura" text="🌱  Cultura/Pasturas" onAction="#abrirCultura"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnVentas" text="🛒  Marketplace" onAction="#abrirVentas"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+
+                                <Label fx:id="lblSecSistema" text="SISTEMA" styleClass="nav-section-label" style="-fx-padding: 10 0 0 0;"/>
+                                <Button fx:id="btnAlertasModulo" text="🔔  Centro de Alertas" onAction="#abrirAlertas"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnReportes" text="📊  Reportes" onAction="#abrirReportes"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                                <Button fx:id="btnConfiguracion" text="⚙  Configuración" onAction="#abrirConfiguracion"
+                                        maxWidth="1.7976931348623157E308" prefHeight="38.0" styleClass="nav-button"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </left>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="top-bar">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <children>
+                <Button fx:id="btnToggleSidebar" text="☰" onAction="#toggleSidebar" styleClass="topbar-toggle"/>
+                <Label text="Finca:" styleClass="topbar-label"/>
+                <ComboBox fx:id="cmbFinca" prefWidth="200.0" styleClass="finca-selector"/>
+
+                <TextField fx:id="txtBuscarGlobal"
+                           promptText="Buscar animal, lote, arete..."
+                           prefWidth="260"
+                           styleClass="global-search-field"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Campana de notificaciones -->
+                <StackPane>
+                    <children>
+                        <Button fx:id="btnCampana" text="🔔" onAction="#mostrarNotificaciones" styleClass="topbar-bell"/>
+                        <Label fx:id="lblBadgeCampana" text="0" styleClass="topbar-bell-badge"
+                               StackPane.alignment="TOP_RIGHT"/>
+                    </children>
+                </StackPane>
+
+                <Label text="📞 301 389 6861" styleClass="topbar-phone"/>
+                <VBox alignment="CENTER_RIGHT" spacing="1">
+                    <children>
+                        <Label fx:id="lblUsuario" styleClass="topbar-user"/>
+                        <Label fx:id="lblRol" styleClass="topbar-rol"/>
+                    </children>
+                </VBox>
+                <Button fx:id="btnCerrarSesion" text="Salir" onAction="#cerrarSesion" styleClass="topbar-logout"/>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-pane">
+            <!-- Marca de agua corporativa (capa de fondo) -->
+            <Label text="SG" styleClass="watermark-bg" mouseTransparent="true"/>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="16" styleClass="app-footer">
+            <padding><Insets top="8" right="20" bottom="8" left="20"/></padding>
+            <children>
+                <Label text="© 2026 Sistema Ganadero" styleClass="footer-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Soporte comercial:" styleClass="footer-text"/>
+                <Label text="📞 +57 301 389 6861" styleClass="footer-phone"/>
+                <Label text="·" styleClass="footer-text"/>
+                <Label text="Versión profesional 2.0" styleClass="footer-text"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

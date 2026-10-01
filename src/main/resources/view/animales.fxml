@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.AnimalesController"
+      spacing="0" styleClass="page-container">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Gestión de Animales" styleClass="page-title"/>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="Finca:" styleClass="page-subtitle"/>
+                            <Label fx:id="lblFinca" styleClass="page-subtitle-accent"/>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotalAnimales" styleClass="total-badge"/>
+        </children>
+    </HBox>
+
+    <!-- Toolbar -->
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="toolbar-bar">
+        <padding><Insets top="12" right="22" bottom="12" left="22"/></padding>
+        <children>
+            <TextField fx:id="txtBuscar" promptText="Buscar por nombre, arete o raza..." prefWidth="300" styleClass="search-field"/>
+            <ComboBox fx:id="cmbFiltroLote" prefWidth="180" promptText="Filtrar por lote" styleClass="filter-combo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="+ Registrar Animal" onAction="#registrarAnimal" styleClass="btn-primary-action"/>
+            <Button text="Eliminar" onAction="#eliminarAnimal" styleClass="btn-danger-action"/>
+        </children>
+    </HBox>
+
+    <!-- Tabla -->
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+        <padding><Insets top="0" right="22" bottom="22" left="22"/></padding>
+        <children>
+            <TableView fx:id="tablaAnimales" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colArete" text="Código" prefWidth="90"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="120"/>
+                    <TableColumn fx:id="colRaza" text="Raza" prefWidth="105"/>
+                    <TableColumn fx:id="colSexo" text="Sexo" prefWidth="65"/>
+                    <TableColumn fx:id="colEdad" text="Edad" prefWidth="75"/>
+                    <TableColumn fx:id="colPesoActual" text="Peso" prefWidth="80"/>
+                    <TableColumn fx:id="colGdp" text="GDP" prefWidth="100"/>
+                    <TableColumn fx:id="colLote" text="Lote" prefWidth="110"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="105"/>
+                    <TableColumn fx:id="colAccion" text="Acción" prefWidth="155"/>
+                </columns>
+                <placeholder>
+                    <Label text="No hay animales registrados en esta finca" style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                </placeholder>
+            </TableView>
+        </children>
+    </VBox>
+</VBox>

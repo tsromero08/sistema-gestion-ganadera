@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sistemaganadero.controller.FichaAnimalController"
+            prefHeight="700.0" prefWidth="1100.0"
+            styleClass="root-pane">
+
+    <top>
+        <VBox styleClass="page-header-bar">
+            <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="14">
+                    <children>
+                        <StackPane prefHeight="84" prefWidth="84" styleClass="ficha-foto-principal">
+                            <children>
+                                <Label fx:id="lblFotoIcon" text="🐄" style="-fx-font-size: 48px;"/>
+                            </children>
+                        </StackPane>
+                        <VBox spacing="3">
+                            <children>
+                                <Label fx:id="lblTitulo" text="—" styleClass="page-title"/>
+                                <Label fx:id="lblSubtitulo" text="—" styleClass="page-subtitle"/>
+                                <HBox spacing="8">
+                                    <children>
+                                        <Label fx:id="lblBadgeEstado" text="Activo" styleClass="ficha-badge ficha-badge-ok"/>
+                                        <Label fx:id="lblBadgeSanidad" text="Saludable" styleClass="ficha-badge ficha-badge-ok"/>
+                                        <Label fx:id="lblBadgeUso" text="Ceba" styleClass="ficha-badge ficha-badge-info"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <VBox alignment="CENTER_RIGHT" spacing="3">
+                            <children>
+                                <Label text="Soporte" style="-fx-font-size: 10px; -fx-text-fill: #94a3b8;"/>
+                                <Label text="📞 +57 301 389 6861" styleClass="topbar-phone"/>
+                            </children>
+                        </VBox>
+                        <Button text="Cerrar" onAction="#cerrar" styleClass="topbar-logout"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="ficha-tabs">
+            <tabs>
+                <!-- TAB RESUMEN -->
+                <Tab text="Resumen">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="14">
+                                    <padding><Insets top="20" right="22" bottom="20" left="22"/></padding>
+                                    <children>
+                                        <Label text="Datos básicos" styleClass="ficha-section-title"/>
+                                        <GridPane hgap="12" vgap="10" styleClass="ficha-grid">
+                                            <columnConstraints>
+                                                <ColumnConstraints percentWidth="33"/>
+                                                <ColumnConstraints percentWidth="33"/>
+                                                <ColumnConstraints percentWidth="34"/>
+                                            </columnConstraints>
+                                            <children>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label text="Código interno" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblCodigo" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label text="Nombre" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblNombre" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label text="Raza" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblRaza" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label text="Sexo" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblSexo" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label text="Edad" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblEdad" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label text="Color" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblColor" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label text="Peso actual" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblPeso" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label text="Tipo de producción" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblTipoProd" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label text="Estado corporal" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblEstadoCorporal" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </GridPane>
+
+                                        <Separator/>
+                                        <Label text="Galería de fotos" styleClass="ficha-section-title"/>
+                                        <FlowPane fx:id="paneGaleria" hgap="10" vgap="10" prefWrapLength="900"/>
+                                        <Label fx:id="lblGaleriaVacia" text="📷 No hay fotos cargadas en la galería" styleClass="ficha-empty"/>
+
+                                        <Separator/>
+                                        <Label text="Video" styleClass="ficha-section-title"/>
+                                        <Label fx:id="lblVideo" styleClass="ficha-cell-value" wrapText="true"/>
+
+                                        <Separator/>
+                                        <Label text="Observaciones del productor" styleClass="ficha-section-title"/>
+                                        <Label fx:id="lblObservaciones" styleClass="ficha-cell-value" wrapText="true"/>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <!-- TAB UBICACIÓN -->
+                <Tab text="Ubicación">
+                    <content>
+                        <VBox spacing="14">
+                            <padding><Insets top="20" right="22" bottom="20" left="22"/></padding>
+                            <children>
+                                <Label text="Localización del animal" styleClass="ficha-section-title"/>
+                                <GridPane hgap="12" vgap="10" styleClass="ficha-grid">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50"/>
+                                        <ColumnConstraints percentWidth="50"/>
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Finca" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblFinca" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Lote / potrero" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblLote" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Departamento" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblDepartamento" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Ciudad / municipio" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblCiudad" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Vereda / zona" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblVereda" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Distancia aproximada" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblDistancia" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+                                <Label text="ⓘ La ubicación exacta del predio sólo se comparte tras autorización del vendedor."
+                                       styleClass="ficha-help"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- TAB SANIDAD -->
+                <Tab text="Sanidad">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="14">
+                                    <padding><Insets top="20" right="22" bottom="20" left="22"/></padding>
+                                    <children>
+                                        <Label text="Estado sanitario actual" styleClass="ficha-section-title"/>
+                                        <GridPane hgap="12" vgap="10" styleClass="ficha-grid">
+                                            <columnConstraints>
+                                                <ColumnConstraints percentWidth="33"/>
+                                                <ColumnConstraints percentWidth="33"/>
+                                                <ColumnConstraints percentWidth="34"/>
+                                            </columnConstraints>
+                                            <children>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label text="Estado sanitario" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblEstadoSanitario" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label text="Veterinario responsable" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblVeterinario" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label text="Estado reproductivo" styleClass="ficha-cell-label"/>
+                                                        <Label fx:id="lblEstadoRepro" styleClass="ficha-cell-value"/>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </GridPane>
+
+                                        <Separator/>
+                                        <Label text="Historial de vacunas" styleClass="ficha-section-title"/>
+                                        <TableView fx:id="tblVacunas" prefHeight="180" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colVacTipo" text="Vacuna" prefWidth="200"/>
+                                                <TableColumn fx:id="colVacFecha" text="Aplicada" prefWidth="120"/>
+                                                <TableColumn fx:id="colVacProx" text="Próxima dosis" prefWidth="120"/>
+                                                <TableColumn fx:id="colVacResp" text="Responsable" prefWidth="160"/>
+                                                <TableColumn fx:id="colVacEstado" text="Estado" prefWidth="100"/>
+                                            </columns>
+                                            <placeholder><Label text="Sin vacunas registradas para este animal"/></placeholder>
+                                        </TableView>
+
+                                        <Label text="Historial sanitario y tratamientos" styleClass="ficha-section-title"/>
+                                        <TableView fx:id="tblSanidad" prefHeight="180" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colSanFecha" text="Fecha" prefWidth="120"/>
+                                                <TableColumn fx:id="colSanDiag" text="Diagnóstico / síntomas" prefWidth="240"/>
+                                                <TableColumn fx:id="colSanTrat" text="Tratamiento" prefWidth="240"/>
+                                                <TableColumn fx:id="colSanVet" text="Veterinario" prefWidth="160"/>
+                                                <TableColumn fx:id="colSanEstado" text="Estado" prefWidth="100"/>
+                                            </columns>
+                                            <placeholder><Label text="Sin episodios sanitarios registrados"/></placeholder>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <!-- TAB PRODUCTIVOS -->
+                <Tab text="Productivos">
+                    <content>
+                        <VBox spacing="14">
+                            <padding><Insets top="20" right="22" bottom="20" left="22"/></padding>
+                            <children>
+                                <Label text="Datos productivos" styleClass="ficha-section-title"/>
+                                <GridPane hgap="12" vgap="10" styleClass="ficha-grid">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="33"/>
+                                        <ColumnConstraints percentWidth="33"/>
+                                        <ColumnConstraints percentWidth="34"/>
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="GDP (kg/día)" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblGdp" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Producción leche diaria" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblLeche" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Uso recomendado" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblUsoRec" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="N° de partos" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblPartos" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Estado de gestación" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblGestacion" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Último parto" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblUltParto" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Calidad genética" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblCalidad" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Línea genética" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblLinea" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Próximo servicio" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblProxServ" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+
+                                <Separator/>
+                                <Label text="Evolución de peso (kg)" styleClass="ficha-section-title"/>
+                                <Label fx:id="lblPesoResumen" styleClass="ficha-cell-value"/>
+                                <Label text="Para ver la curva completa, abre el dashboard del animal en el módulo Animales."
+                                       styleClass="ficha-help"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- TAB DOCUMENTOS -->
+                <Tab text="Documentos">
+                    <content>
+                        <VBox spacing="14">
+                            <padding><Insets top="20" right="22" bottom="20" left="22"/></padding>
+                            <children>
+                                <Label text="Documentos adjuntos al animal" styleClass="ficha-section-title"/>
+                                <GridPane hgap="12" vgap="10" styleClass="ficha-grid">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50"/>
+                                        <ColumnConstraints percentWidth="50"/>
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Registro ICA" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblIca" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <children>
+                                                <Label text="Registro genealógico" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblRegGen" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Guía sanitaria" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblGuiaSan" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Certificado de vacunación" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblCertVac" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Registro de propiedad" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblRegProp" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox styleClass="ficha-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Factura de compra" styleClass="ficha-cell-label"/>
+                                                <Label fx:id="lblFactura" styleClass="ficha-cell-value"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+
+                                <Label text="Otros documentos adjuntos" styleClass="ficha-section-title"/>
+                                <ListView fx:id="lvDocumentos" prefHeight="180"/>
+                                <Label fx:id="lblDocVacios" text="📎 No hay documentos adicionales adjuntos" styleClass="ficha-empty"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="app-footer">
+            <padding><Insets top="10" right="22" bottom="10" left="22"/></padding>
+            <children>
+                <Label text="© 2026 Sistema Ganadero · Ficha técnica oficial" styleClass="footer-text"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Soporte:" styleClass="footer-text"/>
+                <Label text="📞 +57 301 389 6861" styleClass="footer-phone"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

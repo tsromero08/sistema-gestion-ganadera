@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.AlertasController"
+      spacing="0" styleClass="page-container">
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Centro de Alertas" styleClass="page-title"/>
+                    <Label text="10 categorías · 5 estados · alertas clickeables" styleClass="page-subtitle"/>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Refrescar" onAction="#refrescar" styleClass="btn-primary-action"/>
+        </children>
+    </HBox>
+
+    <!-- KPI Resumen -->
+    <HBox spacing="12" styleClass="toolbar-bar">
+        <padding><Insets top="14" right="22" bottom="14" left="22"/></padding>
+        <children>
+            <VBox styleClass="kpi-card kpi-blue" prefWidth="150" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                <children>
+                    <Label text="Total alertas" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiTotal" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card" style="-fx-border-color: #dc2626; -fx-border-width: 0 0 3 0; -fx-background-color: white;" prefWidth="150" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                <children>
+                    <Label text="Críticas" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiCriticas" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card kpi-orange" prefWidth="150" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                <children>
+                    <Label text="Pendientes" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiPendientes" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card kpi-teal" prefWidth="150" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                <children>
+                    <Label text="En proceso" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiEnProceso" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card kpi-green" prefWidth="150" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                <children>
+                    <Label text="Resueltas" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiResueltas" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+
+    <!-- Filtros -->
+    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="toolbar-bar">
+        <padding><Insets top="10" right="22" bottom="10" left="22"/></padding>
+        <children>
+            <Label text="Categoría:" styleClass="form-label"/>
+            <ComboBox fx:id="cmbCategoria" prefWidth="170" styleClass="filter-combo"/>
+            <Label text="Estado:" styleClass="form-label"/>
+            <ComboBox fx:id="cmbEstado" prefWidth="160" styleClass="filter-combo"/>
+            <Label text="Severidad:" styleClass="form-label"/>
+            <ComboBox fx:id="cmbSeveridad" prefWidth="140" styleClass="filter-combo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotalFiltrado" styleClass="total-badge"/>
+        </children>
+    </HBox>
+
+    <!-- Contenido scrollable: lista clickeable -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS" styleClass="dashboard-scroll">
+        <content>
+            <VBox fx:id="contenedor" spacing="12" styleClass="dashboard-content">
+                <padding><Insets top="14" right="22" bottom="22" left="22"/></padding>
+            </VBox>
+        </content>
+    </ScrollPane>
+</VBox>

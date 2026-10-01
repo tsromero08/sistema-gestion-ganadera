@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.InventarioController"
+      spacing="0" styleClass="page-container">
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Inventario e Insumos" styleClass="page-title"/>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="Finca:" styleClass="page-subtitle"/>
+                            <Label fx:id="lblFinca" styleClass="page-subtitle-accent"/>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotalItems" styleClass="total-badge"/>
+        </children>
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="toolbar-bar">
+        <padding><Insets top="12" right="22" bottom="12" left="22"/></padding>
+        <children>
+            <TextField fx:id="txtBuscar" promptText="Buscar por código, nombre o proveedor..." prefWidth="320" styleClass="search-field"/>
+            <ComboBox fx:id="cmbFiltroCategoria" prefWidth="180" promptText="Filtrar categoría" styleClass="filter-combo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="+ Nuevo Insumo" onAction="#registrarItem" styleClass="btn-primary-action"/>
+            <Button text="Editar" onAction="#editarItem" styleClass="btn-primary-action"/>
+            <Button text="Eliminar" onAction="#eliminarItem" styleClass="btn-danger-action"/>
+        </children>
+    </HBox>
+
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+        <padding><Insets top="0" right="22" bottom="22" left="22"/></padding>
+        <children>
+            <TableView fx:id="tablaInventario" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colCodigo" text="Código" prefWidth="100"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="160"/>
+                    <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="110"/>
+                    <TableColumn fx:id="colCantidad" text="Cantidad" prefWidth="90"/>
+                    <TableColumn fx:id="colUnidad" text="Unidad" prefWidth="80"/>
+                    <TableColumn fx:id="colVencim" text="Vence" prefWidth="100"/>
+                    <TableColumn fx:id="colProveedor" text="Proveedor" prefWidth="130"/>
+                    <TableColumn fx:id="colCosto" text="Costo U." prefWidth="90"/>
+                    <TableColumn fx:id="colValor" text="Valor total" prefWidth="100"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="110"/>
+                </columns>
+                <placeholder>
+                    <Label text="No hay insumos registrados en esta finca"
+                           style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                </placeholder>
+            </TableView>
+        </children>
+    </VBox>
+</VBox>

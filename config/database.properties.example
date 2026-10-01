@@ -1,0 +1,38 @@
+# =====================================================================
+# SISTEMA GANADERO — Configuración Multi-Motor de Base de Datos
+# MySQL + PostgreSQL + MongoDB
+# =====================================================================
+# INSTRUCCIONES:
+# 1. Copie este archivo y renómbrelo a: config/database.properties
+# 2. Complete sólo los motores que va a usar (los demás pueden quedar vacíos)
+# 3. NUNCA suba database.properties a un repositorio público
+#
+# Arquitectura:
+#   MySQL / PostgreSQL → información estructurada y relacional
+#   MongoDB            → backups, historiales, logs, datos no estructurados
+# =====================================================================
+
+# ----- MySQL (Google Cloud SQL u otro) -----
+# Formato: jdbc:mysql://IP:3306/NOMBRE_DB
+mysql.url=jdbc:mysql://YOUR_MYSQL_HOST:3306/sistema_ganadero
+mysql.user=ganadero_user
+mysql.password=TU_CONTRASEÑA_MYSQL
+
+# (Compatibilidad con la versión anterior: db.url / db.user / db.password
+# siguen funcionando como alias de mysql.* si los anteriores están vacíos)
+
+# ----- PostgreSQL -----
+# Formato: jdbc:postgresql://IP:5432/NOMBRE_DB
+postgresql.url=jdbc:postgresql://YOUR_PG_HOST:5432/sistema_ganadero
+postgresql.user=ganadero_user
+postgresql.password=TU_CONTRASEÑA_POSTGRES
+
+# ----- MongoDB -----
+# Formato Atlas: mongodb+srv://USER:PASS@cluster.mongodb.net/?retryWrites=true&w=majority
+# Formato local: mongodb://localhost:27017
+mongodb.uri=mongodb://localhost:27017
+mongodb.database=sistemaganadero
+
+# Pool MySQL (opcional, retro-compat)
+db.pool.max=5
+db.pool.timeout=30000

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.sistemaganadero.controller.LoginController"
+           prefHeight="780.0" prefWidth="1280.0"
+           styleClass="login-root">
+
+    <!-- Capa 1: gradiente decorativo radial -->
+    <Pane styleClass="login-bg-overlay" mouseTransparent="true"/>
+
+    <!-- Capa 2: marca de agua corporativa al fondo -->
+    <Label text="SG" styleClass="watermark-logo" StackPane.alignment="CENTER" mouseTransparent="true"/>
+
+    <!-- Capa 3: contenido centrado -->
+    <VBox alignment="CENTER" spacing="22" maxWidth="-Infinity">
+        <padding><Insets top="40" right="40" bottom="30" left="40"/></padding>
+        <children>
+
+            <!-- Header: logo + título corporativo -->
+            <VBox alignment="CENTER" spacing="12">
+                <children>
+                    <!-- Logo emblema -->
+                    <StackPane styleClass="brand-logo-stack">
+                        <children>
+                            <Circle radius="46" styleClass="brand-logo-outer"/>
+                            <Circle radius="38" styleClass="brand-logo-inner"/>
+                            <Label text="🐄" styleClass="brand-logo-icon"/>
+                            <Circle radius="46" styleClass="brand-logo-ring" fill="transparent"/>
+                        </children>
+                    </StackPane>
+
+                    <!-- Título principal centrado -->
+                    <Label text="SISTEMA GANADERO" styleClass="brand-title-centered"/>
+
+                    <!-- Separador decorativo -->
+                    <HBox alignment="CENTER" spacing="14">
+                        <children>
+                            <Line startX="0" endX="80" startY="0" endY="0" styleClass="brand-line-shape"/>
+                            <Label text="✦" styleClass="brand-line-deco"/>
+                            <Line startX="0" endX="80" startY="0" endY="0" styleClass="brand-line-shape"/>
+                        </children>
+                    </HBox>
+
+                    <Label text="GESTIÓN INTEGRAL DE FINCAS" styleClass="brand-subtitle-centered"/>
+                </children>
+            </VBox>
+
+            <!-- Tarjeta de login centrada -->
+            <VBox alignment="CENTER" spacing="18" styleClass="login-card-pro" maxWidth="-Infinity" prefWidth="420">
+                <padding><Insets top="36" right="40" bottom="36" left="40"/></padding>
+                <children>
+                    <VBox spacing="6" alignment="CENTER">
+                        <children>
+                            <Label text="Bienvenido" styleClass="login-title-pro"/>
+                            <Label text="Ingrese sus credenciales para acceder al sistema"
+                                   styleClass="login-subtitle-pro" wrapText="true"/>
+                        </children>
+                    </VBox>
+
+                    <Label fx:id="lblMensajeError" styleClass="login-error" visible="false" managed="false" wrapText="true"/>
+
+                    <!-- Campo usuario con ícono -->
+                    <VBox spacing="6">
+                        <children>
+                            <Label text="USUARIO O CORREO" styleClass="form-label-pro"/>
+                            <HBox styleClass="field-with-icon" alignment="CENTER_LEFT">
+                                <children>
+                                    <Label text="👤" styleClass="field-icon"/>
+                                    <TextField fx:id="txtUsuario" promptText="Ingresa tu usuario"
+                                               styleClass="login-field-pro" HBox.hgrow="ALWAYS"/>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+
+                    <!-- Campo contraseña con ícono -->
+                    <VBox spacing="6">
+                        <children>
+                            <Label text="CONTRASEÑA" styleClass="form-label-pro"/>
+                            <HBox styleClass="field-with-icon" alignment="CENTER_LEFT">
+                                <children>
+                                    <Label text="🔒" styleClass="field-icon"/>
+                                    <PasswordField fx:id="txtClave" promptText="••••••••"
+                                                   styleClass="login-field-pro" HBox.hgrow="ALWAYS"/>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+
+                    <HBox alignment="CENTER_RIGHT">
+                        <children>
+                            <Hyperlink fx:id="linkRecuperar" text="¿Olvidaste tu contraseña?"
+                                       onAction="#recuperarClave" styleClass="login-link-pro"/>
+                        </children>
+                    </HBox>
+
+                    <Button text="INGRESAR AL SISTEMA" onAction="#iniciarSesion" defaultButton="true"
+                            maxWidth="1.7976931348623157E308" prefHeight="48.0"
+                            styleClass="login-btn-primary-pro"/>
+
+                    <!-- Separador "o" -->
+                    <HBox alignment="CENTER" spacing="10">
+                        <children>
+                            <Region styleClass="login-sep-line" HBox.hgrow="ALWAYS"/>
+                            <Label text="o" styleClass="login-sep-text"/>
+                            <Region styleClass="login-sep-line" HBox.hgrow="ALWAYS"/>
+                        </children>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="6">
+                        <children>
+                            <Label text="¿Aún no tienes cuenta?" styleClass="login-hint-pro"/>
+                            <Hyperlink fx:id="linkRegistro" text="Crear cuenta nueva"
+                                       onAction="#abrirRegistro" styleClass="login-link-pro"/>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+
+            <!-- Footer corporativo -->
+            <VBox alignment="CENTER" spacing="6">
+                <children>
+                    <HBox alignment="CENTER" spacing="14">
+                        <children>
+                            <Label text="📞 +57 301 389 6861" styleClass="login-contact-phone"/>
+                            <Label text="·" styleClass="login-contact-sep"/>
+                            <Label text="🌐 sistemaganadero.co" styleClass="login-contact-web"/>
+                        </children>
+                    </HBox>
+                    <Label text="© 2026 Sistema Ganadero · Plataforma profesional para la gestión integral de fincas"
+                           styleClass="login-footer-pro"/>
+                </children>
+            </VBox>
+
+        </children>
+    </VBox>
+</StackPane>

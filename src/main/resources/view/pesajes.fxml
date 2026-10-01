@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.PesajesController"
+      spacing="0" styleClass="page-container">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Registro de Pesajes" styleClass="page-title"/>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="Finca:" styleClass="page-subtitle"/>
+                            <Label fx:id="lblFinca" styleClass="page-subtitle-accent"/>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotalPesajes" styleClass="total-badge"/>
+        </children>
+    </HBox>
+
+    <!-- Toolbar -->
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="toolbar-bar">
+        <padding><Insets top="12" right="22" bottom="12" left="22"/></padding>
+        <children>
+            <TextField fx:id="txtBuscar" promptText="Buscar por arete u observación..." prefWidth="300" styleClass="search-field"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="+ Registrar Pesaje" onAction="#registrarPesaje" styleClass="btn-primary-action"/>
+        </children>
+    </HBox>
+
+    <!-- Tabla -->
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+        <padding><Insets top="0" right="22" bottom="22" left="22"/></padding>
+        <children>
+            <TableView fx:id="tablaPesajes" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colArete" text="Arete" prefWidth="130"/>
+                    <TableColumn fx:id="colFecha" text="Fecha" prefWidth="120"/>
+                    <TableColumn fx:id="colPeso" text="Peso (kg)" prefWidth="130"/>
+                    <TableColumn fx:id="colObservaciones" text="Observaciones" prefWidth="360"/>
+                    <TableColumn fx:id="colAccion" text="Acción" prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="No hay pesajes registrados. Use '+ Registrar Pesaje' para comenzar."
+                           style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                </placeholder>
+            </TableView>
+        </children>
+    </VBox>
+</VBox>

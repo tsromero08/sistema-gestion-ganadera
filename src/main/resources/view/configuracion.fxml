@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sistemaganadero.controller.ConfiguracionController"
+            styleClass="dashboard-scroll">
+    <content>
+        <VBox spacing="16" styleClass="dashboard-content">
+            <padding><Insets top="22" right="22" bottom="22" left="22"/></padding>
+            <children>
+                <Label text="Configuración del Sistema" styleClass="page-title"/>
+                <Label text="Parámetros generales, usuarios y panel administrativo · Soporte: 301 389 6861" styleClass="page-subtitle"/>
+
+                <TabPane tabClosingPolicy="UNAVAILABLE" prefHeight="720">
+                    <tabs>
+                        <Tab text="Usuarios y Roles">
+                            <content>
+                                <VBox spacing="12" styleClass="card">
+                                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                                    <children>
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <children>
+                                                <Label text="Usuarios registrados" styleClass="card-title"/>
+                                                <Region HBox.hgrow="ALWAYS"/>
+                                                <Button text="+ Crear" onAction="#agregarUsuario" styleClass="btn-primary-action"/>
+                                                <Button text="Editar" onAction="#editarUsuario" styleClass="secondary-button"/>
+                                                <Button text="Bloquear/Activar" onAction="#bloquearUsuario" styleClass="secondary-button"/>
+                                                <Button text="Restablecer clave" onAction="#resetPassword" styleClass="secondary-button"/>
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="tablaUsuarios" prefHeight="380" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colUsuario" text="Usuario" prefWidth="130"/>
+                                                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="220"/>
+                                                <TableColumn fx:id="colRol" text="Rol" prefWidth="160"/>
+                                                <TableColumn fx:id="colEmail" text="Email" prefWidth="220"/>
+                                                <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="140"/>
+                                                <TableColumn fx:id="colEstado" text="Estado" prefWidth="110"/>
+                                            </columns>
+                                            <placeholder><Label text="Sin usuarios" style="-fx-text-fill: #94a3b8;"/></placeholder>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <Tab text="Fincas y Lotes">
+                            <content>
+                                <VBox spacing="12" styleClass="card">
+                                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                                    <children>
+                                        <Label text="Fincas registradas" styleClass="card-title"/>
+                                        <TableView fx:id="tablaFincas" prefHeight="180" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colFincaNombre" text="Nombre" prefWidth="160"/>
+                                                <TableColumn fx:id="colFincaUbic" text="Ubicación" prefWidth="200"/>
+                                                <TableColumn fx:id="colFincaProp" text="Propietario" prefWidth="160"/>
+                                                <TableColumn fx:id="colFincaArea" text="Área" prefWidth="100"/>
+                                                <TableColumn fx:id="colFincaEstado" text="Estado" prefWidth="100"/>
+                                                <TableColumn fx:id="colFincaAccion" text="Acciones" prefWidth="120"/>
+                                            </columns>
+                                        </TableView>
+                                        <Label text="Lotes" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <TableView fx:id="tablaLotes" prefHeight="220" styleClass="data-table">
+                                            <columns>
+                                                <TableColumn fx:id="colLoteNom" text="Lote" prefWidth="160"/>
+                                                <TableColumn fx:id="colLoteCap" text="Capacidad" prefWidth="100"/>
+                                                <TableColumn fx:id="colLoteDesc" text="Descripción" prefWidth="280"/>
+                                                <TableColumn fx:id="colLoteEst" text="Estado" prefWidth="100"/>
+                                                <TableColumn fx:id="colLoteAccion" text="Acciones" prefWidth="120"/>
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <Tab text="Parámetros y Alertas">
+                            <content>
+                                <VBox spacing="14" styleClass="card">
+                                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                                    <children>
+                                        <Label text="Parámetros automáticos" styleClass="card-title"/>
+                                        <GridPane hgap="14" vgap="12">
+                                            <Label text="GDP mínimo para 'Rentable':" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="cfgGdpRentable" text="0.90" prefWidth="120" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                            <Label text="kg/día" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+                                            <Label text="GDP mínimo para 'Mantener':" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="cfgGdpMantener" text="0.70" prefWidth="120" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                            <Label text="kg/día" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+                                            <Label text="Días máximos sin pesaje:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="cfgDiasPesaje" text="60" prefWidth="120" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                            <Label text="Frecuencia de purga (meses):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="cfgFrecPurga" text="4" prefWidth="120" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                            <Label text="Frecuencia de vitaminas (meses):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="cfgFrecVit" text="3" prefWidth="120" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                                        </GridPane>
+
+                                        <Label text="Notificaciones" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <CheckBox fx:id="chkNotifPantalla" text="Mostrar notificaciones en pantalla" selected="true"/>
+                                        <CheckBox fx:id="chkNotifAlertas" text="Alertas automáticas de sanidad" selected="true"/>
+                                        <CheckBox fx:id="chkNotifInventario" text="Notificar stock bajo" selected="true"/>
+                                        <CheckBox fx:id="chkNotifVacunas" text="Notificar vacunas próximas" selected="true"/>
+
+                                        <Label text="Marketplace" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <Label text="Comisión por defecto:"/>
+                                            <TextField fx:id="cfgComisionDefault" text="3.0" prefWidth="100"/>
+                                            <Label text="\%"/>
+                                        </HBox>
+
+                                        <Button text="Guardar parámetros" onAction="#guardarParametros" styleClass="btn-primary-action" maxWidth="200"/>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <Tab text="Panel administrativo">
+                            <content>
+                                <VBox spacing="16">
+                                    <padding><Insets top="12" right="2" bottom="12" left="2"/></padding>
+                                    <children>
+                                        <!-- Aprobar/Ocultar publicaciones -->
+                                        <VBox spacing="12" styleClass="card">
+                                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                                            <children>
+                                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                                    <children>
+                                                        <Label text="Publicaciones del marketplace" styleClass="card-title"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Button text="Aprobar / Republicar" onAction="#aprobarPublicacion" styleClass="btn-primary-action"/>
+                                                        <Button text="Retirar publicación" onAction="#ocultarPublicacion" styleClass="btn-danger-action"/>
+                                                    </children>
+                                                </HBox>
+                                                <TableView fx:id="tablaPublicaciones" prefHeight="220" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colPubCodigo" text="Código" prefWidth="100"/>
+                                                        <TableColumn fx:id="colPubTitulo" text="Título" prefWidth="260"/>
+                                                        <TableColumn fx:id="colPubVendedor" text="Vendedor" prefWidth="160"/>
+                                                        <TableColumn fx:id="colPubPrecio" text="Precio" prefWidth="120"/>
+                                                        <TableColumn fx:id="colPubEstado" text="Estado" prefWidth="160"/>
+                                                    </columns>
+                                                    <placeholder><Label text="Sin publicaciones registradas" style="-fx-text-fill: #94a3b8;"/></placeholder>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Comisiones -->
+                                        <VBox spacing="12" styleClass="card">
+                                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                                            <children>
+                                                <Label text="Comisiones generadas (3% por venta)" styleClass="card-title"/>
+                                                <HBox spacing="12">
+                                                    <children>
+                                                        <VBox styleClass="kpi-card kpi-green" prefWidth="180" HBox.hgrow="ALWAYS">
+                                                            <padding><Insets top="12" right="14" bottom="12" left="14"/></padding>
+                                                            <children>
+                                                                <Label text="Total acumulada" styleClass="kpi-label"/>
+                                                                <Label fx:id="lblComisionTotal" text="\$0" styleClass="kpi-value"/>
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card kpi-orange" prefWidth="180" HBox.hgrow="ALWAYS">
+                                                            <padding><Insets top="12" right="14" bottom="12" left="14"/></padding>
+                                                            <children>
+                                                                <Label text="Pendiente de cobro" styleClass="kpi-label"/>
+                                                                <Label fx:id="lblComisionPendiente" text="\$0" styleClass="kpi-value"/>
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card kpi-teal" prefWidth="180" HBox.hgrow="ALWAYS">
+                                                            <padding><Insets top="12" right="14" bottom="12" left="14"/></padding>
+                                                            <children>
+                                                                <Label text="Ya cobrada" styleClass="kpi-label"/>
+                                                                <Label fx:id="lblComisionCobrada" text="\$0" styleClass="kpi-value"/>
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card kpi-blue" prefWidth="180" HBox.hgrow="ALWAYS">
+                                                            <padding><Insets top="12" right="14" bottom="12" left="14"/></padding>
+                                                            <children>
+                                                                <Label text="Ventas cerradas" styleClass="kpi-label"/>
+                                                                <Label fx:id="lblVentasTotales" text="0" styleClass="kpi-value"/>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                                    <children>
+                                                        <Button text="Marcar comisión cobrada" onAction="#marcarComisionCobrada" styleClass="btn-primary-action"/>
+                                                    </children>
+                                                </HBox>
+                                                <TableView fx:id="tablaComisiones" prefHeight="220" styleClass="data-table">
+                                                    <columns>
+                                                        <TableColumn fx:id="colComCodigo" text="Código" prefWidth="100"/>
+                                                        <TableColumn fx:id="colComVendedor" text="Vendedor" prefWidth="160"/>
+                                                        <TableColumn fx:id="colComValor" text="Valor venta" prefWidth="120"/>
+                                                        <TableColumn fx:id="colComPorcentaje" text="Comisión %" prefWidth="80"/>
+                                                        <TableColumn fx:id="colComMonto" text="Comisión" prefWidth="120"/>
+                                                        <TableColumn fx:id="colComEstado" text="Estado" prefWidth="120"/>
+                                                    </columns>
+                                                    <placeholder><Label text="Sin ventas cerradas" style="-fx-text-fill: #94a3b8;"/></placeholder>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <Tab text="Sistema">
+                            <content>
+                                <VBox spacing="14" styleClass="card">
+                                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                                    <children>
+                                        <Label text="Unidades y moneda" styleClass="card-title"/>
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <Label text="Moneda:"/>
+                                            <ComboBox fx:id="cmbMoneda" prefWidth="180"/>
+                                            <Label text="Idioma:"/>
+                                            <ComboBox fx:id="cmbIdioma" prefWidth="140"/>
+                                            <Label text="Unidad peso:"/>
+                                            <ComboBox fx:id="cmbUnidadPeso" prefWidth="100"/>
+                                        </HBox>
+
+                                        <Label text="Seguridad" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <CheckBox fx:id="chkLogAuditoria" text="Registrar auditoría de cambios" selected="true"/>
+                                        <CheckBox fx:id="chkBloqueoAuto" text="Bloqueo automático tras 15 min de inactividad" selected="false"/>
+
+                                        <Label text="Motores de base de datos" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <Label fx:id="lblEstadoMotores" text="MySQL: — · PostgreSQL: — · MongoDB: —"
+                                               style="-fx-font-weight: bold; -fx-text-fill: #1f7a63; -fx-font-size: 14px;"/>
+                                        <Label text="El usuario elige el motor al guardar cada registro. MongoDB siempre recibe copia automática."
+                                               style="-fx-font-size: 11px; -fx-text-fill: #64748b;" wrapText="true"/>
+
+                                        <VBox spacing="8" style="-fx-background-color: #f8fafc; -fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-padding: 12;">
+                                            <Label text="Registros vivos por motor y tabla" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #1e293b;"/>
+                                            <TextArea fx:id="txtConteoRegistros" editable="false" wrapText="true" prefRowCount="8"
+                                                      style="-fx-font-family: 'Consolas','Courier New',monospace; -fx-font-size: 11px;"/>
+                                        </VBox>
+
+                                        <Label text="Configure los tres motores en config/database.properties (ver database.properties.example)."
+                                               style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;" wrapText="true"/>
+
+                                        <Label text="Respaldos automáticos" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <Label fx:id="lblBackupsTotal" text="Total de respaldos: 0"
+                                               style="-fx-font-weight: bold;"/>
+                                        <Label text="Cada vez que un registro es modificado o eliminado, se guarda una copia íntegra en MongoDB (o en data/backups/ si MongoDB no está disponible). El backup incluye datos originales, ID, fecha/hora, usuario y tabla."
+                                               style="-fx-font-size: 11px; -fx-text-fill: #64748b;" wrapText="true"/>
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <Button text="Refrescar estado" onAction="#refrescarEstadoBackups" styleClass="login-btn-secondary"/>
+                                            <Button text="Exportar datos (JSON)" onAction="#exportarDatos" styleClass="btn-primary-action"/>
+                                            <Button text="Importar datos" onAction="#importarDatos" styleClass="btn-primary-action"/>
+                                        </HBox>
+
+                                        <Label text="Información del sistema" styleClass="card-title" style="-fx-padding: 16 0 0 0;"/>
+                                        <Label fx:id="lblVersion" text="Sistema Ganadero — v2.0.0 — JavaFX 21 — Soporte 301 389 6861" style="-fx-text-fill: #475569;"/>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

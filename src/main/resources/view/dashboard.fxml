@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.DashboardController"
+      spacing="16.0" styleClass="page">
+
+    <Label text="Dashboard" styleClass="page-header"/>
+
+    <HBox spacing="14.0">
+        <VBox styleClass="card kpi-card" prefWidth="250.0">
+            <Label text="Terneros registrados" styleClass="kpi-title"/>
+            <Label fx:id="lblCantidadTerneros" text="0" styleClass="kpi-value"/>
+            <Label text="Cantidad actual" styleClass="muted"/>
+        </VBox>
+        <VBox styleClass="card kpi-card" prefWidth="250.0">
+            <Label text="En observación" styleClass="kpi-title"/>
+            <Label fx:id="lblEnObservacion" text="0" styleClass="kpi-value"/>
+            <Label text="Requieren revisión" styleClass="muted"/>
+        </VBox>
+        <VBox styleClass="card kpi-card" prefWidth="250.0">
+            <Label text="Alertas activas" styleClass="kpi-title"/>
+            <Label fx:id="lblAlertas" text="0" styleClass="kpi-value"/>
+            <Label text="Pendientes hoy" styleClass="muted"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="card" spacing="10.0">
+        <Label text="Alertas automáticas" styleClass="section-title"/>
+        <ListView fx:id="listAlertas" prefHeight="320.0"/>
+    </VBox>
+</VBox>

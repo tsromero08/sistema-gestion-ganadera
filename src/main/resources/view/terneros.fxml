@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.TernerosController"
+      spacing="16.0" styleClass="page dashboard-content">
+
+    <Label text="Gestión de terneros" styleClass="page-title"/>
+
+    <HBox spacing="16.0">
+        <VBox styleClass="card" prefWidth="380.0" spacing="10.0">
+            <Label text="Formulario" styleClass="section-title"/>
+            <TextField fx:id="txtArete" promptText="Arete"/>
+            <TextField fx:id="txtNombre" promptText="Nombre"/>
+            <TextField fx:id="txtRaza" promptText="Raza"/>
+            <ComboBox fx:id="cmbSexo" promptText="Sexo"/>
+            <TextField fx:id="txtEdadMeses" promptText="Edad en meses"/>
+            <TextField fx:id="txtPeso" promptText="Peso actual"/>
+            <ComboBox fx:id="cmbEstado" promptText="Estado"/>
+            <Label text="💾  Motor de base de datos" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #1f7a63;"/>
+            <ComboBox fx:id="cmbMotor" maxWidth="1.7976931348623157E308" promptText="MongoDB"/>
+            <Label text="ⓘ Se guardará copia automática en MongoDB" style="-fx-font-size: 10px; -fx-text-fill: #92400e; -fx-font-style: italic;"/>
+            <HBox spacing="10.0">
+                <Button text="Agregar" onAction="#agregarTernero" styleClass="primary-button"/>
+                <Button text="Editar" onAction="#editarTernero" styleClass="secondary-button"/>
+                <Button text="Eliminar" onAction="#eliminarTernero" styleClass="danger-button"/>
+            </HBox>
+            <Button text="Limpiar" onAction="#limpiarFormulario" styleClass="secondary-button" maxWidth="1.7976931348623157E308"/>
+        </VBox>
+
+        <VBox styleClass="card" spacing="10.0" HBox.hgrow="ALWAYS">
+            <Label text="Tabla de terneros (ObservableList / ArrayList)" styleClass="section-title"/>
+            <TableView fx:id="tablaTerneros" prefHeight="520.0">
+                <columns>
+                    <TableColumn fx:id="colArete" text="Arete" prefWidth="90.0"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="130.0"/>
+                    <TableColumn fx:id="colRaza" text="Raza" prefWidth="120.0"/>
+                    <TableColumn fx:id="colSexo" text="Sexo" prefWidth="90.0"/>
+                    <TableColumn fx:id="colEdad" text="Edad" prefWidth="80.0"/>
+                    <TableColumn fx:id="colPeso" text="Peso" prefWidth="90.0"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="120.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.sistemaganadero.controller.RecuperarClaveController"
+           prefHeight="720.0" prefWidth="1280.0"
+           styleClass="auth-root">
+
+    <Label text="SG" styleClass="watermark-logo" StackPane.alignment="CENTER" mouseTransparent="true"/>
+
+    <HBox>
+        <!-- Panel branding -->
+        <VBox prefWidth="480.0" alignment="CENTER" spacing="20" styleClass="login-brand-panel">
+            <padding><Insets top="60" right="50" bottom="60" left="50"/></padding>
+            <children>
+                <VBox spacing="8" alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="RECUPERAR" styleClass="brand-title-line1"/>
+                        <Label text="CONTRASEÑA" styleClass="brand-title-line2"/>
+                        <Label text="Te ayudamos a volver a entrar en 3 pasos" styleClass="brand-subtitle"/>
+                    </children>
+                </VBox>
+                <Region prefHeight="20"/>
+                <VBox spacing="12" styleClass="brand-features">
+                    <children>
+                        <Label fx:id="lblStep1" text="1.  Identifícate por correo o teléfono" styleClass="feature-item"/>
+                        <Label fx:id="lblStep2" text="2.  Ingresa el código de verificación" styleClass="feature-item"/>
+                        <Label fx:id="lblStep3" text="3.  Define tu nueva contraseña" styleClass="feature-item"/>
+                    </children>
+                </VBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <VBox spacing="4">
+                    <children>
+                        <Label text="Soporte directo" styleClass="brand-contact-label"/>
+                        <Label text="📞  +57 301 389 6861" styleClass="brand-contact-phone"/>
+                        <Label text="Te asistimos si no recibes el código" styleClass="brand-contact-sub"/>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+
+        <!-- Panel formulario -->
+        <VBox HBox.hgrow="ALWAYS" alignment="CENTER" styleClass="login-form-panel">
+            <children>
+                <VBox spacing="16" prefWidth="440" styleClass="login-card">
+                    <padding><Insets top="32" right="36" bottom="32" left="36"/></padding>
+                    <children>
+                        <VBox spacing="4">
+                            <children>
+                                <Label fx:id="lblTitulo" text="Buscar mi cuenta" styleClass="login-title"/>
+                                <Label fx:id="lblSubtitulo" text="Indica si quieres recuperar por correo o por teléfono"
+                                       styleClass="login-subtitle" wrapText="true"/>
+                            </children>
+                        </VBox>
+
+                        <Label fx:id="lblMensajeError" styleClass="login-error" visible="false" managed="false" wrapText="true"/>
+
+                        <!-- PASO 1: identificación -->
+                        <VBox fx:id="paneStep1" spacing="12">
+                            <children>
+                                <HBox spacing="14">
+                                    <children>
+                                        <RadioButton fx:id="rbCorreo" text="Por correo" selected="true"/>
+                                        <RadioButton fx:id="rbTelefono" text="Por teléfono"/>
+                                    </children>
+                                </HBox>
+                                <VBox spacing="6">
+                                    <children>
+                                        <Label fx:id="lblIdent" text="Correo electrónico" styleClass="form-label"/>
+                                        <TextField fx:id="txtIdentificacion" promptText="correo@ejemplo.com" styleClass="login-field"/>
+                                    </children>
+                                </VBox>
+                                <Button text="Enviar código de verificación" onAction="#enviarCodigo"
+                                        defaultButton="true" maxWidth="1.7976931348623157E308"
+                                        prefHeight="44.0" styleClass="login-btn-primary"/>
+                            </children>
+                        </VBox>
+
+                        <!-- PASO 2: código -->
+                        <VBox fx:id="paneStep2" spacing="12" visible="false" managed="false">
+                            <children>
+                                <Label fx:id="lblDestino" wrapText="true" styleClass="login-hint"
+                                       text="Te enviamos un código a tu correo / teléfono"/>
+                                <VBox spacing="6">
+                                    <children>
+                                        <Label text="Código de 6 dígitos" styleClass="form-label"/>
+                                        <TextField fx:id="txtCodigo" promptText="000000" styleClass="login-field"/>
+                                    </children>
+                                </VBox>
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button text="Reenviar código" onAction="#reenviarCodigo"
+                                                styleClass="login-btn-secondary" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                                        <Button text="Verificar" onAction="#verificarCodigo" defaultButton="true"
+                                                styleClass="login-btn-primary" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- PASO 3: nueva contraseña -->
+                        <VBox fx:id="paneStep3" spacing="12" visible="false" managed="false">
+                            <children>
+                                <VBox spacing="6">
+                                    <children>
+                                        <Label text="Nueva contraseña" styleClass="form-label"/>
+                                        <PasswordField fx:id="txtNueva" promptText="Mínimo 6 caracteres" styleClass="login-field"/>
+                                    </children>
+                                </VBox>
+                                <VBox spacing="6">
+                                    <children>
+                                        <Label text="Confirmar nueva contraseña" styleClass="form-label"/>
+                                        <PasswordField fx:id="txtNueva2" promptText="Repite la contraseña" styleClass="login-field"/>
+                                    </children>
+                                </VBox>
+                                <Button text="Guardar y volver al login" onAction="#guardarNueva"
+                                        defaultButton="true" maxWidth="1.7976931348623157E308"
+                                        prefHeight="44.0" styleClass="login-btn-primary"/>
+                            </children>
+                        </VBox>
+
+                        <HBox spacing="6" alignment="CENTER">
+                            <children>
+                                <Label text="¿Recordaste tu contraseña?" styleClass="login-hint"/>
+                                <Hyperlink text="Volver al login" onAction="#volverLogin" styleClass="login-link"/>
+                            </children>
+                        </HBox>
+
+                        <Label text="© 2026 Sistema Ganadero · Soporte: 301 389 6861" styleClass="login-footer"/>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </HBox>
+</StackPane>

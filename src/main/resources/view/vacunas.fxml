@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.VacunasController"
+      spacing="0" styleClass="page-container">
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Módulo de Vacunas" styleClass="page-title"/>
+                    <Label text="Registro y alertas automáticas — Soporte: 301 389 6861" styleClass="page-subtitle"/>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotal" styleClass="total-badge"/>
+        </children>
+    </HBox>
+
+    <!-- KPIs -->
+    <HBox spacing="14" styleClass="toolbar-bar">
+        <padding><Insets top="14" right="22" bottom="14" left="22"/></padding>
+        <children>
+            <VBox styleClass="kpi-card kpi-blue" prefWidth="180" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
+                <children>
+                    <Label text="Total vacunas aplicadas" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiTotal" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card kpi-orange" prefWidth="180" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
+                <children>
+                    <Label text="Próximas (≤ 7 días)" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiProximas" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card" style="-fx-border-color: #ef4444; -fx-border-width: 0 0 3 0; -fx-background-color: white;" prefWidth="180" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
+                <children>
+                    <Label text="Vacunas vencidas" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiVencidas" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+            <VBox styleClass="kpi-card kpi-teal" prefWidth="180" HBox.hgrow="ALWAYS">
+                <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
+                <children>
+                    <Label text="Animales sin registro" styleClass="kpi-label"/>
+                    <Label fx:id="lblKpiSinRegistro" text="0" styleClass="kpi-value"/>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="toolbar-bar">
+        <padding><Insets top="12" right="22" bottom="12" left="22"/></padding>
+        <children>
+            <TextField fx:id="txtBuscar" promptText="Buscar por arete, vacuna o responsable..." prefWidth="320" styleClass="search-field"/>
+            <ComboBox fx:id="cmbFiltroEstado" prefWidth="160" promptText="Estado" styleClass="filter-combo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="+ Registrar Vacuna" onAction="#registrarVacuna" styleClass="btn-primary-action"/>
+        </children>
+    </HBox>
+
+    <HBox VBox.vgrow="ALWAYS" spacing="12">
+        <padding><Insets top="0" right="22" bottom="22" left="22"/></padding>
+        <children>
+            <VBox HBox.hgrow="ALWAYS" spacing="4">
+                <children>
+                    <TableView fx:id="tabla" VBox.vgrow="ALWAYS" styleClass="data-table">
+                        <columns>
+                            <TableColumn fx:id="colArete" text="Arete" prefWidth="90"/>
+                            <TableColumn fx:id="colAnimal" text="Animal" prefWidth="170"/>
+                            <TableColumn fx:id="colVacuna" text="Vacuna" prefWidth="130"/>
+                            <TableColumn fx:id="colDosis" text="Dosis" prefWidth="80"/>
+                            <TableColumn fx:id="colLote" text="Lote" prefWidth="100"/>
+                            <TableColumn fx:id="colFechaApl" text="Aplicación" prefWidth="100"/>
+                            <TableColumn fx:id="colProxima" text="Próxima dosis" prefWidth="200"/>
+                            <TableColumn fx:id="colResponsable" text="Responsable" prefWidth="130"/>
+                            <TableColumn fx:id="colEstado" text="Estado" prefWidth="100"/>
+                            <TableColumn fx:id="colAccion" text="Acciones" prefWidth="170"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="Sin vacunas registradas — usa el botón superior"
+                                   style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                        </placeholder>
+                    </TableView>
+                </children>
+            </VBox>
+            <VBox prefWidth="320" spacing="6" styleClass="card">
+                <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                <children>
+                    <Label text="Alertas automáticas de vacunación" styleClass="card-title"/>
+                    <Label text="Calculadas en tiempo real con la fecha de hoy" styleClass="muted"/>
+                    <ListView fx:id="lstAlertas" VBox.vgrow="ALWAYS" styleClass="alerts-list"/>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+</VBox>

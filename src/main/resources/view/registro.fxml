@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.sistemaganadero.controller.RegistroController"
+           prefHeight="780.0" prefWidth="1280.0"
+           styleClass="auth-root">
+
+    <!-- Marca de agua corporativa -->
+    <Label text="SG" styleClass="watermark-logo" StackPane.alignment="CENTER" mouseTransparent="true"/>
+
+    <HBox>
+        <!-- Panel branding -->
+        <VBox prefWidth="480.0" alignment="CENTER" spacing="20" styleClass="login-brand-panel">
+            <padding><Insets top="50" right="50" bottom="50" left="50"/></padding>
+            <children>
+                <VBox spacing="8" alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="ÚNETE A" styleClass="brand-title-line1"/>
+                        <Label text="SISTEMA GANADERO" styleClass="brand-title-line2"/>
+                        <Label text="Tu cuenta profesional en menos de un minuto" styleClass="brand-subtitle"/>
+                    </children>
+                </VBox>
+                <Region prefHeight="30"/>
+                <VBox spacing="12" styleClass="brand-features">
+                    <children>
+                        <Label text="✓  Acceso al Marketplace ganadero" styleClass="feature-item"/>
+                        <Label text="✓  Publicación de bovinos individuales o por lote" styleClass="feature-item"/>
+                        <Label text="✓  Sistema de pujas y negociación con comisión 3%" styleClass="feature-item"/>
+                        <Label text="✓  Alertas y reportes profesionales" styleClass="feature-item"/>
+                        <Label text="✓  Privacidad: tu precio mínimo nunca es público" styleClass="feature-item"/>
+                    </children>
+                </VBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <VBox spacing="4">
+                    <children>
+                        <Label text="Contacto comercial" styleClass="brand-contact-label"/>
+                        <Label text="📞  +57 301 389 6861" styleClass="brand-contact-phone"/>
+                        <Label text="Soporte profesional 24/7" styleClass="brand-contact-sub"/>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+
+        <!-- Panel formulario -->
+        <VBox HBox.hgrow="ALWAYS" alignment="CENTER" styleClass="login-form-panel">
+            <children>
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                            style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <content>
+                        <VBox spacing="14" prefWidth="520" styleClass="login-card" alignment="TOP_CENTER">
+                            <padding><Insets top="28" right="36" bottom="28" left="36"/></padding>
+                            <children>
+                                <VBox spacing="4">
+                                    <children>
+                                        <Label text="Crear cuenta" styleClass="login-title"/>
+                                        <Label text="Completa tus datos para registrarte" styleClass="login-subtitle"/>
+                                    </children>
+                                </VBox>
+
+                                <Label fx:id="lblMensajeError" styleClass="login-error" visible="false" managed="false" wrapText="true"/>
+
+                                <GridPane hgap="12" vgap="10">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+                                            <children>
+                                                <Label text="Nombre completo *" styleClass="form-label"/>
+                                                <TextField fx:id="txtNombre" promptText="Ej: Juan Pérez Restrepo" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Documento / cédula" styleClass="form-label"/>
+                                                <TextField fx:id="txtDocumento" promptText="CC, NIT o pasaporte" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Teléfono *" styleClass="form-label"/>
+                                                <TextField fx:id="txtTelefono" promptText="+57 300 000 0000" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+                                            <children>
+                                                <Label text="Correo electrónico *" styleClass="form-label"/>
+                                                <TextField fx:id="txtEmail" promptText="correo@ejemplo.com" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                            <children>
+                                                <Label text="Departamento" styleClass="form-label"/>
+                                                <ComboBox fx:id="cmbDepartamento" promptText="Selecciona..." editable="true"
+                                                          maxWidth="1.7976931348623157E308" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                            <children>
+                                                <Label text="Ciudad o municipio" styleClass="form-label"/>
+                                                <TextField fx:id="txtCiudad" promptText="Ej: Bogotá" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
+                                            <children>
+                                                <Label text="Tipo de usuario *" styleClass="form-label"/>
+                                                <ComboBox fx:id="cmbRol" promptText="¿Cómo vas a usar el sistema?"
+                                                          maxWidth="1.7976931348623157E308" styleClass="login-field"/>
+                                                <Label fx:id="lblRolHint" wrapText="true" styleClass="login-hint"
+                                                       text="Selecciona un tipo para ver qué permisos incluye."/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                                            <children>
+                                                <Label text="Usuario *" styleClass="form-label"/>
+                                                <TextField fx:id="txtUsuario" promptText="Mínimo 3 caracteres, sin espacios" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                                            <children>
+                                                <Label text="Contraseña *" styleClass="form-label"/>
+                                                <PasswordField fx:id="txtClave" promptText="Mínimo 6 caracteres" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                            <children>
+                                                <Label text="Confirmar contraseña *" styleClass="form-label"/>
+                                                <PasswordField fx:id="txtClave2" promptText="Repite la contraseña" styleClass="login-field"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+
+                                <CheckBox fx:id="chkTerminos" text="Acepto los términos del servicio y el tratamiento de datos"/>
+
+                                <Button text="Crear mi cuenta" onAction="#registrar" defaultButton="true"
+                                        maxWidth="1.7976931348623157E308" prefHeight="44.0" styleClass="login-btn-primary"/>
+
+                                <HBox spacing="6" alignment="CENTER">
+                                    <children>
+                                        <Label text="¿Ya tienes cuenta?" styleClass="login-hint"/>
+                                        <Hyperlink text="Iniciar sesión" onAction="#volverLogin" styleClass="login-link"/>
+                                    </children>
+                                </HBox>
+
+                                <Label text="© 2026 Sistema Ganadero · Soporte: 301 389 6861" styleClass="login-footer"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </HBox>
+</StackPane>

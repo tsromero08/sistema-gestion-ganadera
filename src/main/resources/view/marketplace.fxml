@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sistemaganadero.controller.MarketplaceController"
+      spacing="0" styleClass="page-container">
+
+    <HBox alignment="CENTER_LEFT" spacing="12" styleClass="page-header-bar">
+        <padding><Insets top="18" right="22" bottom="18" left="22"/></padding>
+        <children>
+            <VBox spacing="2">
+                <children>
+                    <Label text="Marketplace Ganadero" styleClass="page-title"/>
+                    <Label text="Bovinos publicados — comisión 3% · Soporte: 301 389 6861" styleClass="page-subtitle"/>
+                </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotal" styleClass="total-badge"/>
+        </children>
+    </HBox>
+
+    <VBox styleClass="toolbar-bar" spacing="8">
+        <padding><Insets top="12" right="22" bottom="12" left="22"/></padding>
+        <children>
+            <!-- Fila 1: búsqueda y filtros principales -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <children>
+                    <TextField fx:id="txtBuscar" promptText="Buscar por código, vendedor o ubicación..." prefWidth="240" styleClass="search-field"/>
+                    <ComboBox fx:id="cmbFiltroEstado" prefWidth="160" promptText="Estado" styleClass="filter-combo"/>
+                    <ComboBox fx:id="cmbFiltroRaza" prefWidth="130" promptText="Raza" styleClass="filter-combo"/>
+                    <ComboBox fx:id="cmbFiltroSexo" prefWidth="100" promptText="Sexo" styleClass="filter-combo"/>
+                    <ComboBox fx:id="cmbFiltroProduccion" prefWidth="150" promptText="Tipo producción" styleClass="filter-combo"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ToggleButton fx:id="btnFiltrosAvanzados" text="⚙ Filtros avanzados" onAction="#toggleFiltrosAvanzados" styleClass="view-toggle"/>
+                    <Button text="+ Publicar Animal" onAction="#publicarIndividual" styleClass="btn-primary-action"/>
+                    <Button text="+ Publicar Lote" onAction="#publicarLote" styleClass="btn-primary-action"/>
+                </children>
+            </HBox>
+
+            <!-- Fila 2: ubicación y precio -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <children>
+                    <Label text="📍 Ubicación:" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbFiltroDepartamento" prefWidth="150" promptText="Departamento" styleClass="filter-combo"/>
+                    <TextField fx:id="txtFiltroCiudad" promptText="Ciudad/municipio" prefWidth="160" styleClass="search-field"/>
+                    <Label text="Distancia máx (km):" styleClass="form-label"/>
+                    <TextField fx:id="txtDistanciaMax" promptText="Cualquiera" prefWidth="110" styleClass="search-field"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="💰 Precio:" styleClass="form-label"/>
+                    <TextField fx:id="txtPrecioMin" promptText="Mínimo $" prefWidth="110" styleClass="search-field"/>
+                    <Label text="—" styleClass="form-label"/>
+                    <TextField fx:id="txtPrecioMax" promptText="Máximo $" prefWidth="110" styleClass="search-field"/>
+                </children>
+            </HBox>
+
+            <!-- Fila 3: avanzados (visible al activar) -->
+            <HBox fx:id="filaAvanzada1" alignment="CENTER_LEFT" spacing="10" visible="false" managed="false">
+                <children>
+                    <Label text="📅 Edad meses:" styleClass="form-label"/>
+                    <TextField fx:id="txtEdadMin" promptText="Min" prefWidth="80" styleClass="search-field"/>
+                    <Label text="—" styleClass="form-label"/>
+                    <TextField fx:id="txtEdadMax" promptText="Max" prefWidth="80" styleClass="search-field"/>
+                    <Label text="⚖ Peso kg:" styleClass="form-label"/>
+                    <TextField fx:id="txtPesoMin" promptText="Min" prefWidth="80" styleClass="search-field"/>
+                    <Label text="—" styleClass="form-label"/>
+                    <TextField fx:id="txtPesoMax" promptText="Max" prefWidth="80" styleClass="search-field"/>
+                    <Label text="🩺 Sanidad:" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbFiltroSanidad" prefWidth="130" promptText="Cualquiera" styleClass="filter-combo"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Limpiar filtros" onAction="#limpiarFiltros" styleClass="login-btn-secondary"/>
+                </children>
+            </HBox>
+
+            <!-- Fila 4: checks y fecha (visible al activar) -->
+            <HBox fx:id="filaAvanzada2" alignment="CENTER_LEFT" spacing="14" visible="false" managed="false">
+                <children>
+                    <CheckBox fx:id="chkVacunasAlDia" text="✓ Vacunas al día"/>
+                    <CheckBox fx:id="chkConRegistro" text="📋 Con registro genealógico / ICA"/>
+                    <Label text="📆 Publicado:" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbFiltroFecha" prefWidth="160" promptText="Cualquier fecha" styleClass="filter-combo"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Vista:" styleClass="form-label"/>
+                    <ToggleButton fx:id="btnVistaTabla" text="Tabla" onAction="#cambiarAVistaTabla" selected="true" styleClass="view-toggle"/>
+                    <ToggleButton fx:id="btnVistaTarjetas" text="Tarjetas" onAction="#cambiarAVistaTarjetas" styleClass="view-toggle"/>
+                    <Label text="Ordenar:" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbOrden" prefWidth="200" promptText="Más recientes" styleClass="filter-combo"/>
+                </children>
+            </HBox>
+
+            <!-- Fila ordenamiento siempre visible cuando avanzados está cerrado -->
+            <HBox fx:id="filaSimple" alignment="CENTER_LEFT" spacing="10">
+                <children>
+                    <CheckBox fx:id="chkVacunasAlDiaSimple" text="✓ Solo vacunas al día"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Vista:" styleClass="form-label"/>
+                    <ToggleButton fx:id="btnVistaTablaSimple" text="Tabla" onAction="#cambiarAVistaTabla" selected="true" styleClass="view-toggle"/>
+                    <ToggleButton fx:id="btnVistaTarjetasSimple" text="Tarjetas" onAction="#cambiarAVistaTarjetas" styleClass="view-toggle"/>
+                    <Label text="Ordenar:" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbOrdenSimple" prefWidth="200" promptText="Más recientes" styleClass="filter-combo"/>
+                </children>
+            </HBox>
+        </children>
+    </VBox>
+
+    <StackPane fx:id="contenedorVista" VBox.vgrow="ALWAYS" styleClass="table-container">
+        <padding><Insets top="0" right="22" bottom="22" left="22"/></padding>
+        <children>
+            <TableView fx:id="tabla" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colCodigo" text="Código" prefWidth="100"/>
+                    <TableColumn fx:id="colTipo" text="Tipo" prefWidth="80"/>
+                    <TableColumn fx:id="colTitulo" text="Título" prefWidth="220"/>
+                    <TableColumn fx:id="colAretes" text="Aretes" prefWidth="140"/>
+                    <TableColumn fx:id="colUbicacion" text="Ubicación" prefWidth="170"/>
+                    <TableColumn fx:id="colVendedor" text="Vendedor" prefWidth="130"/>
+                    <TableColumn fx:id="colPrecio" text="Precio" prefWidth="170"/>
+                    <TableColumn fx:id="colComision" text="Comisión" prefWidth="80"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="140"/>
+                    <TableColumn fx:id="colAccion" text="Acciones" prefWidth="220"/>
+                </columns>
+                <placeholder>
+                    <Label text="No hay publicaciones — sea el primero en publicar"
+                           style="-fx-text-fill: #94a3b8; -fx-font-size: 14px;"/>
+                </placeholder>
+            </TableView>
+            <ScrollPane fx:id="scrollTarjetas" fitToWidth="true" hbarPolicy="NEVER"
+                        visible="false" managed="false"
+                        style="-fx-background-color: transparent; -fx-background: transparent;">
+                <content>
+                    <FlowPane fx:id="paneTarjetas" hgap="14" vgap="14" prefWrapLength="1100"
+                              style="-fx-padding: 10;"/>
+                </content>
+            </ScrollPane>
+        </children>
+    </StackPane>
+</VBox>

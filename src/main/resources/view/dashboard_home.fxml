@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+            styleClass="dashboard-scroll"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sistemaganadero.controller.DashboardHomeController">
+    <content>
+        <VBox spacing="18" styleClass="dashboard-content">
+            <padding><Insets top="22" right="22" bottom="22" left="22"/></padding>
+            <children>
+
+                <!-- Header finca -->
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <children>
+                        <VBox spacing="2">
+                            <children>
+                                <Label text="DASHBOARD" styleClass="page-title"/>
+                                <HBox spacing="6" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Finca activa:" styleClass="page-subtitle"/>
+                                        <Label fx:id="lblFincaNombre" styleClass="finca-badge"/>
+                                        <Label text=" · Soporte: 301 389 6861" styleClass="page-subtitle"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- KPI Row ganadería -->
+                <HBox spacing="16">
+                    <children>
+                        <VBox styleClass="kpi-card kpi-blue" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Animales" styleClass="kpi-label"/>
+                                <Label fx:id="lblAnimales" text="–" styleClass="kpi-value"/>
+                                <Label text="Activos en la finca" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card kpi-green" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="GDP Promedio" styleClass="kpi-label"/>
+                                <Label fx:id="lblGdpProm" text="–" styleClass="kpi-value"/>
+                                <Label text="Ganancia diaria de peso" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card kpi-orange" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Costo/Kg Producción" styleClass="kpi-label"/>
+                                <Label fx:id="lblCostoKg" text="–" styleClass="kpi-value"/>
+                                <Label text="Costo actual del ciclo" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card kpi-teal" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Margen Estimado" styleClass="kpi-label"/>
+                                <Label fx:id="lblMargen" text="–" styleClass="kpi-value"/>
+                                <Label text="Valor proyectado de venta" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- KPI Row marketplace -->
+                <HBox spacing="16">
+                    <children>
+                        <VBox styleClass="kpi-card" style="-fx-border-color: #1f7a63; -fx-border-width: 0 0 3 0; -fx-background-color: white;" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Publicaciones activas" styleClass="kpi-label"/>
+                                <Label fx:id="lblPublicaciones" text="–" styleClass="kpi-value"/>
+                                <Label text="Marketplace" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" style="-fx-border-color: #3b82f6; -fx-border-width: 0 0 3 0; -fx-background-color: white;" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Ofertas recibidas" styleClass="kpi-label"/>
+                                <Label fx:id="lblOfertas" text="–" styleClass="kpi-value"/>
+                                <Label text="Total pujas" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" style="-fx-border-color: #f59e0b; -fx-border-width: 0 0 3 0; -fx-background-color: white;" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Ventas cerradas" styleClass="kpi-label"/>
+                                <Label fx:id="lblVentasCerradas" text="–" styleClass="kpi-value"/>
+                                <Label text="Estado VENDIDO" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" style="-fx-border-color: #1f9e80; -fx-border-width: 0 0 3 0; -fx-background-color: white;" HBox.hgrow="ALWAYS" spacing="6">
+                            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+                            <children>
+                                <Label text="Comisión acumulada" styleClass="kpi-label"/>
+                                <Label fx:id="lblComisionAcum" text="–" styleClass="kpi-value"/>
+                                <Label text="Total generado (3%)" styleClass="kpi-caption"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Galería por raza -->
+                <VBox styleClass="card" spacing="10">
+                    <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                    <children>
+                        <Label text="Razas presentes en la finca" styleClass="card-title"/>
+                        <HBox fx:id="razasRow" spacing="14" alignment="CENTER_LEFT"/>
+                    </children>
+                </VBox>
+
+                <!-- Charts + Alerts Row -->
+                <HBox spacing="16">
+                    <children>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10">
+                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                            <children>
+                                <Label text="Peso Promedio por Semana" styleClass="card-title"/>
+                                <LineChart fx:id="chartPesoSemanal" animated="false" legendVisible="false"
+                                           prefHeight="200" styleClass="dash-chart">
+                                    <xAxis><CategoryAxis/></xAxis>
+                                    <yAxis><NumberAxis label="kg"/></yAxis>
+                                </LineChart>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="card card-alerts" prefWidth="280" spacing="10">
+                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                            <children>
+                                <Label text="Alertas Importantes" styleClass="card-title"/>
+                                <ListView fx:id="listAlertas" prefHeight="200" styleClass="alerts-list"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Sanidad + GDP por Lote Row -->
+                <HBox spacing="16">
+                    <children>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10">
+                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                            <children>
+                                <Label text="Sanidad (Próximos 7 días)" styleClass="card-title"/>
+                                <TableView fx:id="tblSanidad" prefHeight="200" styleClass="dash-table">
+                                    <columns>
+                                        <TableColumn fx:id="colSanArete" text="Arete" prefWidth="90"/>
+                                        <TableColumn fx:id="colSanRaza" text="Raza" prefWidth="110"/>
+                                        <TableColumn fx:id="colSanSexo" text="Sexo" prefWidth="70"/>
+                                        <TableColumn fx:id="colSanPeso" text="Peso" prefWidth="90"/>
+                                        <TableColumn fx:id="colSanEstado" text="Estado" prefWidth="110"/>
+                                    </columns>
+                                    <placeholder><Label text="Sin animales" style="-fx-text-fill: #94a3b8;"/></placeholder>
+                                </TableView>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="card" prefWidth="280" spacing="10">
+                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                            <children>
+                                <Label text="GDP por Lote" styleClass="card-title"/>
+                                <PieChart fx:id="chartGdpLote" prefHeight="200" labelsVisible="false" legendVisible="true"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- No Rentables + Acciones Rápidas Row -->
+                <HBox spacing="16">
+                    <children>
+                        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10">
+                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                            <children>
+                                <Label text="Animales No Rentables" styleClass="card-title"/>
+                                <TableView fx:id="tblNoRentables" prefHeight="180" styleClass="dash-table">
+                                    <columns>
+                                        <TableColumn fx:id="colNrArete" text="Arete" prefWidth="100"/>
+                                        <TableColumn fx:id="colNrGdp" text="GDP" prefWidth="120"/>
+                                        <TableColumn fx:id="colNrPeso" text="Peso Actual" prefWidth="110"/>
+                                        <TableColumn fx:id="colNrEstado" text="Estado" prefWidth="120"/>
+                                    </columns>
+                                    <placeholder><Label text="Sin animales no rentables" style="-fx-text-fill: #94a3b8;"/></placeholder>
+                                </TableView>
+                            </children>
+                        </VBox>
+                        <VBox styleClass="card" prefWidth="260" spacing="12">
+                            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                            <children>
+                                <Label text="Acciones Rápidas" styleClass="card-title"/>
+                                <Button text="+ Registro de Pesaje" onAction="#accionPesaje"
+                                        maxWidth="1.7976931348623157E308" prefHeight="42" styleClass="quick-action-btn"/>
+                                <Button text="+ Registro de Vacuna" onAction="#accionVacuna"
+                                        maxWidth="1.7976931348623157E308" prefHeight="42" styleClass="quick-action-btn"/>
+                                <Button text="Generar Reporte" onAction="#accionReporte"
+                                        maxWidth="1.7976931348623157E308" prefHeight="42" styleClass="quick-action-btn-outline"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

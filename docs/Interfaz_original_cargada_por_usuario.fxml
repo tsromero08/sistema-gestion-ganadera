@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="768.0" prefWidth="1366.0" styleClass="root-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistemaganadero.controller.DashboardController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="top-bar">
+            <padding>
+                <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+            </padding>
+            <children>
+                <Label styleClass="brand-label" text="Sistema Ganadero" />
+                <ComboBox fx:id="cmbFinca" prefWidth="220.0" promptText="Seleccionar finca" />
+                <TextField fx:id="txtBuscar" prefWidth="360.0" promptText="Buscar animal, lote, arete o evento..." />
+                <Region>
+                    <HBox.hgrow>
+                        <Priority fx:constant="ALWAYS" />
+                    </HBox.hgrow>
+                </Region>
+                <Button fx:id="btnMensajes" styleClass="icon-button" text="Mensajes" />
+                <Button fx:id="btnNotificaciones" styleClass="icon-button" text="Notificaciones" />
+                <Label fx:id="lblUsuario" styleClass="user-label" text="Administrador" />
+            </children>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox prefWidth="235.0" spacing="8.0" styleClass="sidebar">
+            <padding>
+                <Insets bottom="16.0" left="14.0" right="14.0" top="16.0" />
+            </padding>
+            <children>
+                <Label styleClass="sidebar-title" text="Panel principal" />
+                <Button fx:id="btnInicio" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button nav-selected" text="Inicio" />
+                <Button fx:id="btnAnimales" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Animales" />
+                <Button fx:id="btnPesajes" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Pesajes" />
+                <Button fx:id="btnSanidadModulo" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Sanidad" />
+                <Button fx:id="btnDietas" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Dietas" />
+                <Button fx:id="btnInventario" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Inventario" />
+                <Button fx:id="btnFinanzas" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Finanzas" />
+                <Button fx:id="btnEspacioRotacion" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Espacio y rotación" />
+                <Button fx:id="btnAlertasModulo" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Alertas" />
+                <Button fx:id="btnReportes" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Reportes" />
+                <Button fx:id="btnConfiguracion" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="nav-button" text="Configuración" />
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll" vbarPolicy="AS_NEEDED">
+            <content>
+                <VBox spacing="16.0" styleClass="dashboard-content">
+                    <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                    </padding>
+                    <children>
+                        <Label styleClass="page-title" text="Dashboard" />
+
+                        <HBox spacing="16.0">
+                            <children>
+                                <VBox prefHeight="108.0" prefWidth="250.0" spacing="8.0" styleClass="card kpi-card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="kpi-title" text="Animales" />
+                                        <Label fx:id="lblAnimales" styleClass="kpi-value" text="50" />
+                                        <Label styleClass="kpi-caption" text="Activos en la finca" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="108.0" prefWidth="250.0" spacing="8.0" styleClass="card kpi-card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="kpi-title" text="GDP promedio" />
+                                        <Label fx:id="lblGdp" styleClass="kpi-value" text="0,92 kg/día" />
+                                        <Label styleClass="kpi-caption" text="Ganancia diaria de peso" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="108.0" prefWidth="250.0" spacing="8.0" styleClass="card kpi-card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="kpi-title" text="Costo/Kg producido" />
+                                        <Label fx:id="lblCostoKg" styleClass="kpi-value" text="\$5.200" />
+                                        <Label styleClass="kpi-caption" text="Costo actual del ciclo" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="108.0" prefWidth="250.0" spacing="8.0" styleClass="card kpi-card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="kpi-title" text="Margen estimado" />
+                                        <Label fx:id="lblMargen" styleClass="kpi-value" text="\$1,8 M" />
+                                        <Label styleClass="kpi-caption" text="Valor proyectado de venta" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="16.0">
+                            <children>
+                                <VBox prefHeight="210.0" prefWidth="420.0" spacing="10.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Tareas de hoy" />
+                                        <Label styleClass="item-text" text="• 3 vacunas pendientes" />
+                                        <Label styleClass="item-text" text="• 2 lotes listos para rotación" />
+                                        <Label styleClass="item-text" text="• 1 insumo por debajo del mínimo" />
+                                        <Label styleClass="item-text" text="• 4 animales pendientes de pesaje" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="210.0" prefWidth="420.0" spacing="10.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Alertas críticas" />
+                                        <Label styleClass="alert-text" text="• Arete 1022 no rentable" />
+                                        <Label styleClass="alert-text" text="• Arete 1045 con GDP muy bajo" />
+                                        <Label styleClass="alert-text" text="• Potrero B con capacidad excedida" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="210.0" prefWidth="480.0" spacing="10.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Resumen de peso" />
+                                        <LineChart fx:id="chartPesoResumen" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0">
+                                            <xAxis>
+                                                <CategoryAxis label="Semana" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="Peso (kg)" />
+                                            </yAxis>
+                                        </LineChart>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="16.0">
+                            <children>
+                                <VBox prefHeight="260.0" prefWidth="820.0" spacing="10.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Animales clave" />
+                                        <TableView fx:id="tblAnimalesClave" prefHeight="210.0">
+                                            <columns>
+                                                <TableColumn fx:id="colArete" prefWidth="100.0" text="Arete" />
+                                                <TableColumn fx:id="colLote" prefWidth="120.0" text="Lote" />
+                                                <TableColumn fx:id="colPeso" prefWidth="100.0" text="Peso" />
+                                                <TableColumn fx:id="colGdp" prefWidth="90.0" text="GDP" />
+                                                <TableColumn fx:id="colCostoTabla" prefWidth="110.0" text="Costo/Kg" />
+                                                <TableColumn fx:id="colEstado" prefWidth="120.0" text="Estado" />
+                                                <TableColumn fx:id="colAccion" prefWidth="120.0" text="Acción" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="260.0" prefWidth="480.0" spacing="10.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Rentabilidad por lote" />
+                                        <PieChart fx:id="chartRentabilidadLote" labelsVisible="true" legendVisible="true" prefHeight="210.0" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="16.0">
+                            <children>
+                                <VBox prefHeight="230.0" prefWidth="820.0" spacing="10.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Peso promedio semanal" />
+                                        <LineChart fx:id="chartPesoSemanal" animated="false" createSymbols="false" legendVisible="false" prefHeight="180.0">
+                                            <xAxis>
+                                                <CategoryAxis label="Semana" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="Peso (kg)" />
+                                            </yAxis>
+                                        </LineChart>
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="230.0" prefWidth="480.0" spacing="12.0" styleClass="card">
+                                    <padding><Insets bottom="14.0" left="14.0" right="14.0" top="14.0" /></padding>
+                                    <children>
+                                        <Label styleClass="section-title" text="Acciones rápidas" />
+                                        <Button fx:id="btnPesaje" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="primary-action" text="+ Registrar pesaje" />
+                                        <Button fx:id="btnSanidad" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="primary-action" text="+ Registrar sanidad" />
+                                        <Button fx:id="btnCosto" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="primary-action" text="+ Registrar costo" />
+                                        <Button fx:id="btnVenta" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="primary-action" text="+ Registrar venta" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

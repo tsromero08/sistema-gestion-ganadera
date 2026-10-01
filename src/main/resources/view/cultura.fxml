@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sistemaganadero.controller.CulturaController"
+            styleClass="dashboard-scroll">
+    <content>
+        <VBox spacing="16" styleClass="dashboard-content">
+            <padding><Insets top="22" right="22" bottom="22" left="22"/></padding>
+            <children>
+                <Label text="Cultura y Pasturas" styleClass="page-title"/>
+                <Label text="Recomendaciones automáticas: fertilización, rotación, mejora del suelo y uso del pasto"
+                       styleClass="page-subtitle"/>
+
+                <VBox fx:id="contenedor" spacing="12"/>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
